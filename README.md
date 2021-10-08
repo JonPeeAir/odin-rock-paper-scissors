@@ -1,0 +1,1 @@
+This project is part of The Odin Project curriculum that aims to practice JavaScript skills by making an interactive rock paper scissors web-app
