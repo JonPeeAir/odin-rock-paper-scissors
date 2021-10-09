@@ -1,26 +1,35 @@
-alert("WELCOME TO ROCK PAPER SCISSOR");
-alert("It's you vs the computer");
-alert("First to 5 wins!");
+let gameOver = false
+while (!gameOver) {
+    alert("WELCOME TO ROCK PAPER SCISSOR");
+    alert("It's you vs the computer");
+    alert("First to 5 wins!");
 
-let userScore = 0;
-let compScore = 0;
+    let scores = {"user": 0, "comp": 0}
 
-let currentRound = 1;
-while (userScore < 5 && compScore < 5) {
-    let userChoice = prompt("Rock | Paper | Scissors ?").toLowerCase();
+    let currentRound = 1;
+    while (scores["user"] < 5 && scores["comp"] < 5) {
+        let userChoice = prompt("Rock | Paper | Scissors ?").toLowerCase();
 
-    // Alerts "invalid input" if userChoice is not rock, paper, or scissors
-    if (userChoice === "" || !["rock", "paper", "scissors"].includes(userChoice)) {
-        alert("Invalid Input!");
-        continue;
+        // Alerts "invalid input" if userChoice is not rock, paper, or scissors
+        if (userChoice === "" || !["rock", "paper", "scissors"].includes(userChoice)) {
+            alert("Invalid Input!");
+            continue;
+        }
+        console.log("UserChoice: " + userChoice);
+
+        let compChoice = getCompChoice();
+        console.log("CompChoice: " + compChoice);
+
+        let winner = getWinner(userChoice, compChoice);
+        
+        displayWinnerForRound(winner, userChoice, compChoice);
+
+        updateWinnerScore(winner, scores);
     }
-    console.log("UserChoice: " + userChoice);
 
-    let compChoice = getCompChoice();
-    console.log("CompChoice: " + compChoice);
+    displayOverallWinner(scores);
 
-    let winner = getWinner(userChoice, compChoice);
-    updateWinnerScore(winner);
+    gameOver = playAgain();
 }
 
 
@@ -68,19 +77,30 @@ function getWinner(player1, player2) {
     }
 }
 
-function updateWinnerScore(winner) {
+function updateWinnerScore(winner, scores) {
+    switch(winner) {
+        case 0:
+            scores["user"]++;
+            break;
+        case 1:
+            scores["comp"]++;
+            break;
+        default:
+            return;
+    }
+}
+
+function displayWinnerForRound(winner, user, comp) {
     switch(winner) {
         case 0:
             console.log("You WIN!!");
-            console.log(`${userChoice} beats ${compChoice}!`);
-            alert(`You WIN!!\n${userChoice} beats ${compChoice}!`)
-            userScore++;
+            console.log(`${user} beats ${comp}!`);
+            alert(`You WIN!!\n${user} beats ${comp}!`)
             break;
         case 1:
             console.log("You Lose...");
-            console.log(`${compChoice} beats ${userChoice}!`);
-            alert(`You Lose...\n${compChoice} beats ${userChoice}!`)
-            compScore++;
+            console.log(`${comp} beats ${user}!`);
+            alert(`You Lose...\n${comp} beats ${user}!`)
             break;
         case 2:
             console.log("It's a tie.");
@@ -88,6 +108,28 @@ function updateWinnerScore(winner) {
             break;
         default:
             alert("Invalid winner.");
+    }
+}
+
+function displayOverallWinner(scores) {
+    if (scores["user"] === 5) {
+        alert("You Win The Game!!!");
+    } else if (scores["comp"] === 5) {
+        alert("You lost :(\nThe computer wins the game...");
+    } else {
+        alert("Error in overall scores");
+    }
+}
+
+function playAgain() {
+    let choice = prompt("Play again?\nYes | No").toLowerCase();
+    if (choice === "yes") {
+        return false; // gameOver will be false
+    } else if (choice === "no") {
+        return true;
+    } else {
+        alert("Cannot parse choice.\nQuitting by default.");
+        return true;
     }
 }
 
