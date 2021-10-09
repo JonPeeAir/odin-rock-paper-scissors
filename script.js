@@ -14,35 +14,19 @@ while (userScore < 5 && compScore < 5) {
         alert("Invalid Input!");
         continue;
     }
-
     console.log("UserChoice: " + userChoice);
+
     let compChoice = getCompChoice();
     console.log("CompChoice: " + compChoice);
 
     let winner = getWinner(userChoice, compChoice);
-
-    switch(winner) {
-        case 0:
-            console.log("You WIN!!");
-            console.log(`${userChoice} beats ${compChoice}!`);
-            alert(`You WIN!!\n${userChoice} beats ${compChoice}!`)
-            userScore++;
-            break;
-        case 1:
-            console.log("You Lose...");
-            console.log(`${compChoice} beats ${userChoice}!`);
-            alert(`You Lose...\n${compChoice} beats ${userChoice}!`)
-            compScore++;
-            break;
-        case 2:
-            console.log("It's a tie.");
-            alert("It's a tie.")
-            break;
-        default:
-            alert("Invalid winner.");
-    }
+    updateWinnerScore(winner);
 }
 
+
+
+
+/*----------------------------FUNCTIONS---------------------------------*/
 function getCompChoice() {
     let randomNum = Math.floor(Math.random() * 3);
     switch (randomNum) {
@@ -83,3 +67,27 @@ function getWinner(player1, player2) {
             return null;
     }
 }
+
+function updateWinnerScore(winner) {
+    switch(winner) {
+        case 0:
+            console.log("You WIN!!");
+            console.log(`${userChoice} beats ${compChoice}!`);
+            alert(`You WIN!!\n${userChoice} beats ${compChoice}!`)
+            userScore++;
+            break;
+        case 1:
+            console.log("You Lose...");
+            console.log(`${compChoice} beats ${userChoice}!`);
+            alert(`You Lose...\n${compChoice} beats ${userChoice}!`)
+            compScore++;
+            break;
+        case 2:
+            console.log("It's a tie.");
+            alert("It's a tie.")
+            break;
+        default:
+            alert("Invalid winner.");
+    }
+}
+
