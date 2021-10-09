@@ -3,11 +3,15 @@ while (!gameOver) {
     alert("WELCOME TO ROCK PAPER SCISSOR");
     alert("It's you vs the computer");
     alert("First to 5 wins!");
+    alert("Open the console with (fn + f12) if you want to view the score while playing.")
 
     let scores = {"user": 0, "comp": 0}
 
     let currentRound = 1;
     while (scores["user"] < 5 && scores["comp"] < 5) {
+
+        console.log(`userChoice: ${scores["user"]}\ncompChoice: ${scores["comp"]}`)
+
         let userChoice = prompt("Rock | Paper | Scissors ?").toLowerCase();
 
         // Alerts "invalid input" if userChoice is not rock, paper, or scissors
@@ -15,10 +19,8 @@ while (!gameOver) {
             alert("Invalid Input!");
             continue;
         }
-        console.log("UserChoice: " + userChoice);
 
         let compChoice = getCompChoice();
-        console.log("CompChoice: " + compChoice);
 
         let winner = getWinner(userChoice, compChoice);
         
@@ -93,17 +95,12 @@ function updateWinnerScore(winner, scores) {
 function displayWinnerForRound(winner, user, comp) {
     switch(winner) {
         case 0:
-            console.log("You WIN!!");
-            console.log(`${user} beats ${comp}!`);
             alert(`You WIN!!\n${user} beats ${comp}!`)
             break;
         case 1:
-            console.log("You Lose...");
-            console.log(`${comp} beats ${user}!`);
             alert(`You Lose...\n${comp} beats ${user}!`)
             break;
         case 2:
-            console.log("It's a tie.");
             alert("It's a tie.")
             break;
         default:
