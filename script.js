@@ -1,38 +1,3 @@
-let gameOver = false
-while (!gameOver) {
-    alert("WELCOME TO ROCK PAPER SCISSOR");
-    alert("It's you vs the computer");
-    alert("First to 5 wins!");
-    alert("Open the console with (fn + f12) if you want to view the score while playing.")
-
-    let scores = {"user": 0, "comp": 0}
-
-    let currentRound = 1;
-    while (scores["user"] < 5 && scores["comp"] < 5) {
-
-        console.log(`userChoice: ${scores["user"]}\ncompChoice: ${scores["comp"]}`)
-
-        let userChoice = prompt("Rock | Paper | Scissors ?").toLowerCase();
-
-        // Alerts "invalid input" if userChoice is not rock, paper, or scissors
-        if (userChoice === "" || !["rock", "paper", "scissors"].includes(userChoice)) {
-            alert("Invalid Input!");
-            continue;
-        }
-
-        let compChoice = getCompChoice();
-
-        let winner = getWinner(userChoice, compChoice);
-        
-        displayWinnerForRound(winner, userChoice, compChoice);
-
-        updateWinnerScore(winner, scores);
-    }
-
-    displayOverallWinner(scores);
-
-    gameOver = playAgain();
-}
 
 
 
@@ -92,41 +57,4 @@ function updateWinnerScore(winner, scores) {
     }
 }
 
-function displayWinnerForRound(winner, user, comp) {
-    switch(winner) {
-        case 0:
-            alert(`You WIN!!\n${user} beats ${comp}!`)
-            break;
-        case 1:
-            alert(`You Lose...\n${comp} beats ${user}!`)
-            break;
-        case 2:
-            alert("It's a tie.")
-            break;
-        default:
-            alert("Invalid winner.");
-    }
-}
-
-function displayOverallWinner(scores) {
-    if (scores["user"] === 5) {
-        alert("You Win The Game!!!");
-    } else if (scores["comp"] === 5) {
-        alert("You lost :(\nThe computer wins the game...");
-    } else {
-        alert("Error in overall scores");
-    }
-}
-
-function playAgain() {
-    let choice = prompt("Play again?\nYes | No").toLowerCase();
-    if (choice === "yes") {
-        return false; // gameOver will be false
-    } else if (choice === "no") {
-        return true;
-    } else {
-        alert("Cannot parse choice.\nQuitting by default.");
-        return true;
-    }
-}
 
