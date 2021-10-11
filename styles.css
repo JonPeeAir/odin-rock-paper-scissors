@@ -15,6 +15,43 @@ html {
     margin: 0;
 }
 
+.splash {
+    background-color: white;
+    color: white;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation-name: splashScreen;
+    animation-duration: 5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes splashScreen {
+    0% {
+        background-color: white;
+    }
+
+    25% {
+        background-color: #333;;
+    }
+
+    75% {
+        top: 0px;
+        background-color: #333;;
+    }
+
+    100% {
+        top: -100%;
+        background-color: #333;;
+    }
+}
+
+
 body{
     height: 80%;
     display: flex;
