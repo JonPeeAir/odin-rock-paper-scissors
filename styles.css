@@ -15,7 +15,7 @@ html {
     margin: 0;
 }
 
-.main {
+body{
     height: 80%;
     display: flex;
     flex-direction: column;
@@ -23,7 +23,8 @@ html {
 }
 
 .title {
-    margin: 2rem;;
+    margin: 2rem;
+    text-align: center;
 }
 
 .scores {
@@ -47,9 +48,4 @@ html {
     margin: 2rem;
     padding: 0.5rem;
     display: none;
-}
-
-.mainTitle {
-    transition-property: "display";
-    transition: all 1s;
 }
