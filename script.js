@@ -1,8 +1,34 @@
+const resetButton = document.querySelector(".reset");
+resetButton.addEventListener("click", resetGame);
+const userScoreNode = document.getElementById("user-score");
+const compScoreNode = document.getElementById("comp-score");
+const scoreNode = document.querySelector(".scores");
+const choices = document.querySelector(".choices");
+const body = document.querySelector("body");
+const gameComments = document.getElementById("game-comments");
 
+let scores = {"user": 0, "comp": 0};
 
-
+const buttons = Array.from(document.querySelectorAll("button"));
+buttons.forEach(button => button.addEventListener("click", playRound));
 
 /*----------------------------FUNCTIONS---------------------------------*/
+function playRound(event) {
+
+        let userChoice = event.target.id;
+        let compChoice = getCompChoice();
+        let winner = getWinner(userChoice, compChoice);
+        updateWinnerScore(winner, scores);
+        showRoundResults(winner, userChoice, compChoice);
+
+        // if we have an overall game winner
+        if (scores["user"] >= 5 || scores["comp"] >= 5) {
+            hideGame();
+            showGameResult();
+            showResetButton();
+        }
+}
+
 function getCompChoice() {
     let randomNum = Math.floor(Math.random() * 3);
     switch (randomNum) {
@@ -45,16 +71,68 @@ function getWinner(player1, player2) {
 }
 
 function updateWinnerScore(winner, scores) {
+
     switch(winner) {
         case 0:
             scores["user"]++;
+            userScoreNode.textContent = scores["user"];
             break;
         case 1:
             scores["comp"]++;
+            compScoreNode.textContent = scores["comp"]
             break;
         default:
             return;
     }
+}
+
+function showRoundResults(winner, userChoice, compChoice) {
+    switch(winner) {
+        case 0:
+            gameComments.textContent = `You win! ${userChoice} beats ${compChoice}.`;
+            break;
+        case 1: 
+            gameComments.textContent = `You lose... ${userChoice} loses to ${compChoice}.`;
+            break;
+        case 2:
+            gameComments.textContent = "It's a tie."
+            break;
+    }
+}
+
+function hideGame(){
+    scoreNode.setAttribute("style", "display: none;");
+    choices.setAttribute("style", "display: none;");
+}
+
+function showGame() {
+    scoreNode.setAttribute("style", "display: flex;");
+    choices.setAttribute("style", "display: flex;");
+}
+
+function showGameResult() {
+    if (scores["user"] > scores["comp"]) {
+        gameComments.textContent = "You Win The Game!";
+    } else {
+        gameComments.textContent = "You Lose to Computer...";
+    }
+}
+
+function showResetButton() {
+    resetButton.setAttribute('style', 'display: block');
+}
+
+function hideResetButton() {
+    resetButton.setAttribute('style', 'display: none');
+}
+
+function resetGame() {
+    scores = {"user": 0, "comp": 0};
+    userScoreNode.textContent = "0";
+    compScoreNode.textContent = "0";
+    hideResetButton();
+    showGame();
+    gameComments.textContent = "pick an option";
 }
 
 
