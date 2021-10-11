@@ -1,32 +1,32 @@
-const resetButton = document.querySelector(".reset");
-resetButton.addEventListener("click", resetGame);
-const userScoreNode = document.getElementById("user-score");
-const compScoreNode = document.getElementById("comp-score");
-const scoreNode = document.querySelector(".scores");
-const choices = document.querySelector(".choices");
 const body = document.querySelector("body");
-const gameComments = document.getElementById("game-comments");
+const scoreNode = document.querySelector(".scores");
+const userScoreNode = document.querySelector(".user-score");
+const compScoreNode = document.querySelector(".comp-score");
+const choices = document.querySelector(".choices");
+const gameComments = document.querySelector(".game-comments");
+const resetButton = document.querySelector(".reset");
+const buttons = Array.from(document.querySelectorAll("button"));
 
 let scores = {"user": 0, "comp": 0};
 
-const buttons = Array.from(document.querySelectorAll("button"));
+resetButton.addEventListener("click", resetGame);
 buttons.forEach(button => button.addEventListener("click", playRound));
 
-/*----------------------------FUNCTIONS---------------------------------*/
 function playRound(event) {
+    let userChoice = event.target.id;
+    let compChoice = getCompChoice();
 
-        let userChoice = event.target.id;
-        let compChoice = getCompChoice();
-        let winner = getWinner(userChoice, compChoice);
-        updateWinnerScore(winner, scores);
-        showRoundResults(winner, userChoice, compChoice);
+    let winner = getWinner(userChoice, compChoice);
 
-        // if we have an overall game winner
-        if (scores["user"] >= 5 || scores["comp"] >= 5) {
-            hideGame();
-            showGameResult();
-            showResetButton();
-        }
+    updateWinnerScore(winner, scores);
+    showRoundResults(winner, userChoice, compChoice);
+
+    // if we have an overall game winner
+    if (scores["user"] >= 5 || scores["comp"] >= 5) {
+        hideGame();
+        showGameResult();
+        showResetButton();
+    }
 }
 
 function getCompChoice() {
@@ -42,9 +42,7 @@ function getCompChoice() {
 }
 
 function getWinner(player1, player2) {
-    // 0 - player 1 wins
-    // 1 - player 2 wins
-    // 2 - it's a tie
+    // 0 - playerOne | 1 - playerTwo | 2 - tie 
     let state = player1 + " " + player2;
     switch (state) {
         case "rock rock":
@@ -127,12 +125,15 @@ function hideResetButton() {
 }
 
 function resetGame() {
+    resetScore();
+    hideResetButton();
+    gameComments.textContent = "pick an option";
+    showGame();
+}
+
+function resetScore(){
     scores = {"user": 0, "comp": 0};
     userScoreNode.textContent = "0";
     compScoreNode.textContent = "0";
-    hideResetButton();
-    showGame();
-    gameComments.textContent = "pick an option";
 }
-
 
