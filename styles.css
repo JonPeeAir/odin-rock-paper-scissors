@@ -31,6 +31,10 @@ html {
     animation-fill-mode: forwards;
 }
 
+.splash h1 {
+    text-align: center;
+}
+
 @keyframes splashScreen {
     0% {
         background-color: white;
