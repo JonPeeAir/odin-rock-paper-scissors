@@ -1,4 +1,5 @@
 const body = document.querySelector("body");
+const main = document.querySelector(".main");
 const scoreNode = document.querySelector(".scores");
 const userScoreNode = document.querySelector(".user-score");
 const compScoreNode = document.querySelector(".comp-score");
@@ -12,8 +13,25 @@ let scores = {"user": 0, "comp": 0};
 resetButton.addEventListener("click", resetGame);
 buttons.forEach(button => button.addEventListener("click", playRound));
 
+showSplashScreen();
+
+function showSplashScreen() {
+    main.style.display = "none";
+
+    const mainTitle = document.createElement("h1");
+    mainTitle.textContent = "ROCK PAPER SCISSORS";
+    body.appendChild(mainTitle);
+    mainTitle.style.display = "block";
+
+    setTimeout(() => {
+        body.removeChild(mainTitle);
+        main.style.display = "flex";
+        return;
+    }, 2000);
+}
+
 function playRound(event) {
-    let userChoice = event.target.id;
+    let userChoice = event.target.className;
     let compChoice = getCompChoice();
 
     let winner = getWinner(userChoice, compChoice);
