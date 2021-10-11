@@ -9,4 +9,34 @@ html {
 * {
     padding: 0;
     margin: 0;
+    /* border: 1px solid black; */
 }
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    margin: 2rem;;
+}
+
+.scores {
+    margin: 2rem;
+    display: flex;
+    gap: 1rem;
+    text-align: center;
+}
+
+.choices {
+    margin: 2rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.choices > button {
+    padding: .5rem;
+}
+
