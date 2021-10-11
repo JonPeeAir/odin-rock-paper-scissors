@@ -15,7 +15,7 @@ html {
     margin: 0;
 }
 
-body {
+.main {
     height: 80%;
     display: flex;
     flex-direction: column;
@@ -47,4 +47,9 @@ body {
     margin: 2rem;
     padding: 0.5rem;
     display: none;
+}
+
+.mainTitle {
+    transition-property: "display";
+    transition: all 1s;
 }
