@@ -27,7 +27,7 @@ html {
     justify-content: center;
     align-items: center;
     animation-name: splashScreen;
-    animation-duration: 5s;
+    animation-duration: 10s;
     animation-fill-mode: forwards;
 }
 
