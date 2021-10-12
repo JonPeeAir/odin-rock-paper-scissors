@@ -12,6 +12,7 @@ const buttons = Array.from(document.querySelectorAll(".choices > button"));
 
 let scores = {"user": 0, "comp": 0};
 
+backgroundMusic.play();
 muteButton.addEventListener("click", () => {
     if (backgroundMusic.volume === 1) {
         muteImg.src = "images/volume-xmark-solid.svg";
