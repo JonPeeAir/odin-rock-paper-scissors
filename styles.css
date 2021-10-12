@@ -90,3 +90,23 @@ body{
     padding: 0.5rem;
     display: none;
 }
+
+.mute {
+    margin-top: auto;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: inherit;
+    height: 30px;
+    width: 30px;
+}
+
+.mute img {
+    height: 25px;
+    transition: all 0.15s;
+}
+
+.mute img:hover{
+    height: 27px;
+}
