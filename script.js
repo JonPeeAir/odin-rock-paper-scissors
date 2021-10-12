@@ -1,5 +1,5 @@
 const body = document.querySelector("body");
-const scoreNode = document.querySelector(".scores");
+const scoreNode = document.querySelector(".score-section");
 const userScoreNode = document.querySelector(".user-score");
 const compScoreNode = document.querySelector(".comp-score");
 const choices = document.querySelector(".choices");
@@ -31,7 +31,8 @@ resetButton.addEventListener("click", resetGame);
 buttons.forEach(button => button.addEventListener("click", playRound));
 
 function playRound(event) {
-    let userChoice = event.target.className;
+    console.log(event);
+    let userChoice = event.target.id;
     let compChoice = getCompChoice();
 
     let winner = getWinner(userChoice, compChoice);
