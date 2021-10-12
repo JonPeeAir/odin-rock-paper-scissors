@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
+
 html {
     box-sizing: border-box;
     height: 100%;
@@ -13,14 +15,17 @@ html {
 * {
     padding: 0;
     margin: 0;
+    font-family: 'Patrick Hand SC', sans-serif;
 }
 
 .splash {
-    background-color: white;
+    background-color: #fff;
     color: white;
+    font-size: 2rem;
     position: absolute;
     top: 0px;
     left: 0px;
+    z-index: 1;
     height: 100%;
     width: 100%;
     display: flex;
@@ -29,6 +34,8 @@ html {
     animation-name: splashScreen;
     animation-duration: 10s;
     animation-fill-mode: forwards;
+    animation-timing-function: ease-in;
+    /* display:none; remove later */
 }
 
 .splash h1 {
@@ -57,22 +64,39 @@ html {
 
 
 body{
-    height: 80%;
+    height: 100vh;
+    width: 100vw;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
 }
 
 .title {
-    margin: 2rem;
+    width: inherit;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    font-size: 4rem;
+    font-weight: normal;
     text-align: center;
 }
 
-.scores {
-    margin: 2rem;
+.score-section {
+    width: inherit;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
     display: flex;
-    gap: 1rem;
+    gap: 3rem;
+    justify-content: center;
+    align-items: center;
     text-align: center;
+    font-size: 3.2rem;
+}
+
+.scores {
+    padding: 0rem 3rem;
+    border: 5px dashed black;
+    border-radius: 10px;
 }
 
 .choices {
@@ -81,8 +105,12 @@ body{
     gap: 1rem;
 }
 
-.choices > button {
+.choices button {
     padding: .5rem;
+}
+
+.choices button img {
+    width: 100px;
 }
 
 .reset {
@@ -91,15 +119,19 @@ body{
     display: none;
 }
 
-.mute {
-    margin-top: auto;
-    border: none;
+.mute-section {
+    width: inherit;
+    min-height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.mute {
+    position: relative;
+    left: -12px;
+    border: none;
     background-color: inherit;
-    height: 30px;
-    width: 30px;
 }
 
 .mute img {
@@ -109,4 +141,12 @@ body{
 
 .mute img:hover{
     height: 27px;
+}
+
+footer {
+    margin-top: auto;
+    text-align: center;
+    padding: 0.7rem;
+    width: 100%;
+    background-color: #c4c4c4;
 }
