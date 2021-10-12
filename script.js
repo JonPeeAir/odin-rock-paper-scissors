@@ -12,14 +12,17 @@ const buttons = Array.from(document.querySelectorAll(".choices > button"));
 
 let scores = {"user": 0, "comp": 0};
 
-backgroundMusic.play();
+backgroundMusic.preload = true;
+
+document.addEventListener("click", () => backgroundMusic.play());
+
 muteButton.addEventListener("click", () => {
-    if (backgroundMusic.volume === 1) {
-        muteImg.src = "images/volume-xmark-solid.svg";
-        backgroundMusic.volume = 0;
-    } else if (backgroundMusic.volume === 0) {
+    if (backgroundMusic.muted === true) {
         muteImg.src = "images/volume-high-solid.svg";
-        backgroundMusic.volume = 1;
+        backgroundMusic.muted = false;
+    } else if (backgroundMusic.muted === false) {
+        muteImg.src = "images/volume-xmark-solid.svg";
+        backgroundMusic.muted = true;
     }
     console.log(backgroundMusic.volume)
 });
