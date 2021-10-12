@@ -13,7 +13,6 @@ const buttons = Array.from(document.querySelectorAll(".choices > button"));
 let scores = {"user": 0, "comp": 0};
 
 muteButton.addEventListener("click", () => {
-    console.log(backgroundMusic.volume)
     if (backgroundMusic.volume === 1) {
         muteImg.src = "images/volume-xmark-solid.svg";
         backgroundMusic.volume = 0;
@@ -21,6 +20,7 @@ muteButton.addEventListener("click", () => {
         muteImg.src = "images/volume-high-solid.svg";
         backgroundMusic.volume = 1;
     }
+    console.log(backgroundMusic.volume)
 });
 
 resetButton.addEventListener("click", resetGame);
