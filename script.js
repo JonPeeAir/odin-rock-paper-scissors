@@ -5,7 +5,7 @@ const compScoreNode = document.querySelector(".comp-score");
 const choices = document.querySelector(".choices");
 const gameComments = document.querySelector(".game-comments");
 const resetButton = document.querySelector(".reset");
-const buttons = Array.from(document.querySelectorAll("button"));
+const buttons = Array.from(document.querySelectorAll(".choices > button"));
 
 let scores = {"user": 0, "comp": 0};
 
@@ -18,15 +18,13 @@ function playRound(event) {
 
     let winner = getWinner(userChoice, compChoice);
 
-    updateWinnerScore(winner, scores);
-    showRoundResults(winner, userChoice, compChoice);
-
-    // if we have an overall game winner
-    if (scores["user"] >= 5 || scores["comp"] >= 5) {
-        hideGame();
-        showGameResult();
-        showResetButton();
-    }
+    buttons.forEach(button => button.disabled = true);
+    setTimeout(() => {
+        buttons.forEach(button => button.disabled = false);
+        updateWinnerScore(winner, scores);
+        showRoundResults(winner, userChoice, compChoice);
+        checkIfGameEnded();
+    }, 2000);
 }
 
 function getCompChoice() {
@@ -95,6 +93,14 @@ function showRoundResults(winner, userChoice, compChoice) {
         case 2:
             gameComments.textContent = "It's a tie."
             break;
+    }
+}
+
+function checkIfGameEnded() {
+    if (scores["user"] >= 5 || scores["comp"] >= 5) {
+        hideGame();
+        showGameResult();
+        showResetButton();
     }
 }
 
