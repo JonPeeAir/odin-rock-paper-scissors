@@ -10,29 +10,47 @@
 </head>
 <body>
     <div class="splash">
-        <h1>ROCK PAPER SCISSORS</h1>
+        <h1>ROCK&nbsp;&nbsp;&nbsp;PAPER&nbsp;&nbsp;&nbsp;SCISSORS</h1>
     </div>
-    <h1 class="title">ROCK PAPER SCISSORS</h1>
-    <div class="scores">
-        <div class="user">
-            YOU <br> <span class="user-score">0</span>
-        </div>
-        <div class="comp">
-            COMP <br> <span class="comp-score">0</span>
-        </div>
+
+    <h1 class="title">ROCK&nbsp;&nbsp;&nbsp;PAPER&nbsp;&nbsp;&nbsp;SCISSORS</h1>
+
+    <div class="score-section">
+        <p>YOU</p>
+        <p class="scores">
+            <span class="user-score">0</span>
+            :
+            <span class="comp-score">0</span>
+        </p>
+        <p>COMP</p>
     </div>
-    <div class="choices">
-        <button class="rock">ROCK</button>
-        <button class="paper">PAPER</button>
-        <button class="scissors">SCISSORS</button>
+    
+    <div class="mute-section">
+        <button class="mute">
+            <img src="images/volume-high-solid.svg"/> 
+        </button>
     </div>
-    <div class="game-comments">pick an option</div>
+
+    <div class="game-comments">
+        pick an option
+    </div>
     <button class="reset">Play Again?</button>
+
+    <div class="choices">
+        <button class="rock">
+            <img id="rock" src="images/rock.svg"/>
+        </button>
+        <button class="paper">
+            <img id="paper" src="images/paper.svg"/>
+        </button>
+        <button class="scissors">
+            <img id="scissors" src="images/scissors.svg"/>
+        </button>
+    </div>
+
+    <footer>JNPR @ TheOdinProject</footer>
 
     <iframe src="audio/silence.mp3" allow="autoplay" id="audio" style="display: none"></iframe>
     <audio class="bg-music" src="audio/Way Back Then (Squid Game OST).mp3" autoplay loop></audio>
-    <button class="mute">
-        <img src="images/volume-high-solid.svg"/> 
-    </button>
 </body>
 </html>
