@@ -36,8 +36,8 @@ buttons.forEach(button => button.onclick = playRound);
 
 function playRound(event) {
     console.log(event);
-    userHandImg.setAttribute("src", "images/rock.svg");
-    compHandImg.setAttribute("src", "images/rock.svg");
+    userHandImg.setAttribute("src", "images/test/rock-left.svg");
+    compHandImg.setAttribute("src", "images/test/rock.svg");
     let userChoice = event.target.id;
     let compChoice = getCompChoice();
 
@@ -59,9 +59,9 @@ function playRound(event) {
     setTimeout(() => {
         currentButton.removeAttribute("style");
         userHand.removeAttribute("style");
-        userHandImg.setAttribute("src", `images/${userChoice}.svg`);
+        userHandImg.setAttribute("src", `images/test/${userChoice}-left.svg`);
         compHand.removeAttribute("style")
-        compHandImg.setAttribute("src", `images/${compChoice}.svg`);
+        compHandImg.setAttribute("src", `images/test/${compChoice}.svg`);
         buttons.forEach(button => button.disabled = false);
         updateWinnerScore(winner, scores);
         showRoundResults(winner, userChoice, compChoice);

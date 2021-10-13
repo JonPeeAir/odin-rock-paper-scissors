@@ -31,7 +31,7 @@ html {
     animation-duration: 10s;
     animation-fill-mode: forwards;
     animation-timing-function: ease-in;
-    /* display:none;*/
+    display:none;
 }
 
 .splash h1 {
@@ -137,20 +137,20 @@ body {
 
 .user-hand {
     /* mirror the comp-hand */
-    transform: rotateY(180deg) rotateZ(-90deg);
+    transform: rotate(90deg);
 }
 
 @keyframes user-hand-animation {
     0% {
-        transform: rotateY(180deg) rotateZ(-90deg) translate(0px, 0px);
+        transform: rotate(90deg) translate(0px, 0px);
     }
 
     50% {
-        transform: rotateY(180deg) rotateZ(-30deg) translate(100px, -100px);
+        transform: rotate(30deg) translate(-100px, -100px);
     }
 
     100% {
-        transform: rotateY(180deg) rotateZ(-90deg) translate(0px, 0px);
+        transform: rotate(90deg) translate(0px, 0px);
     }
 }
 
