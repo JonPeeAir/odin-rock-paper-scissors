@@ -147,7 +147,7 @@ function checkIfGameEnded() {
 }
 
 function hideGame(){
-    scoreNode.setAttribute("style", "display: none;");
+    // scoreNode.setAttribute("style", "display: none;");
     choices.setAttribute("style", "display: none;");
 }
 
@@ -165,7 +165,7 @@ function showGameResult() {
 }
 
 function showResetButton() {
-    resetButton.setAttribute('style', 'display: block');
+    resetButton.setAttribute('style', 'display: block; margin-top: auto;');
 }
 
 function hideResetButton() {
