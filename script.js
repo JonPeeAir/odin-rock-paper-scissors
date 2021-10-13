@@ -2,11 +2,15 @@ const body = document.querySelector("body");
 const scoreNode = document.querySelector(".score-section");
 const userScoreNode = document.querySelector(".user-score");
 const compScoreNode = document.querySelector(".comp-score");
-const choices = document.querySelector(".choices");
-const gameComments = document.querySelector(".game-comments");
 const backgroundMusic = document.querySelector(".bg-music");
 const muteButton = document.querySelector(".mute");
 const muteImg = document.querySelector(".mute img");
+const gameComments = document.querySelector(".game-comments");
+const userHand = document.querySelector(".user-hand");
+const userHandImg = document.querySelector(".user-hand img");
+const compHand = document. querySelector(".comp-hand");
+const compHandImg = document.querySelector(".comp-hand img");
+const choices = document.querySelector(".choices");
 const resetButton = document.querySelector(".reset");
 const buttons = Array.from(document.querySelectorAll(".choices > button"));
 
@@ -32,6 +36,8 @@ buttons.forEach(button => button.onclick = playRound);
 
 function playRound(event) {
     console.log(event);
+    userHandImg.setAttribute("src", "images/rock.svg");
+    compHandImg.setAttribute("src", "images/rock.svg");
     let userChoice = event.target.id;
     let compChoice = getCompChoice();
 
@@ -45,15 +51,22 @@ function playRound(event) {
     } else {
         currentButton = event.target;
     }
-    currentButton.setAttribute("style", "bottom: 10px; animation: wave 2s forwards;")
+    currentButton.setAttribute("style", "bottom: 10px; animation: wave 3.5s forwards;")
+
+    userHand.setAttribute("style", "animation: user-hand-animation 0.7s ease-in-out 4");
+    compHand.setAttribute("style", "animation: comp-hand-animation 0.7s ease-in-out 4");
 
     setTimeout(() => {
         currentButton.removeAttribute("style");
+        userHand.removeAttribute("style");
+        userHandImg.setAttribute("src", `images/${userChoice}.svg`);
+        compHand.removeAttribute("style")
+        compHandImg.setAttribute("src", `images/${compChoice}.svg`);
         buttons.forEach(button => button.disabled = false);
         updateWinnerScore(winner, scores);
         showRoundResults(winner, userChoice, compChoice);
         checkIfGameEnded();
-    }, 4000);
+    }, 2700);
 }
 
 function getCompChoice() {
