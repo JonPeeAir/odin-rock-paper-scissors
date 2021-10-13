@@ -2,10 +2,6 @@
 
 html {
     box-sizing: border-box;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 *, *::after, *::before {
@@ -35,7 +31,7 @@ html {
     animation-duration: 10s;
     animation-fill-mode: forwards;
     animation-timing-function: ease-in;
-    /* display:none; remove later */
+    display:none; /*remove later*/
 }
 
 .splash h1 {
@@ -63,7 +59,7 @@ html {
 }
 
 
-body{
+body {
     height: 100vh;
     width: 100vw;
     display: flex;
@@ -75,7 +71,7 @@ body{
 .title {
     width: inherit;
     margin-top: 3rem;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     font-size: 4rem;
     font-weight: normal;
     text-align: center;
@@ -83,53 +79,43 @@ body{
 
 .score-section {
     width: inherit;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    text-align: center;
     display: flex;
-    gap: 3rem;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    font-size: 3.2rem;
+    gap: 2rem;
 }
 
-.scores {
+.score-section .player-label {
+    font-size: 2.5rem;
+    width: 100px;
+}
+
+.player-label.user {
+    text-align: right;
+}
+
+.player-label.comp {
+    text-align: left;
+}
+
+.score-section .scores {
+    font-size: 3.2rem;
     padding: 0rem 3rem;
     border: 5px dashed black;
     border-radius: 10px;
 }
 
-.choices {
-    margin: 2rem;
-    display: flex;
-    gap: 1rem;
-}
-
-.choices button {
-    padding: .5rem;
-}
-
-.choices button img {
-    width: 100px;
-}
-
-.reset {
-    margin: 2rem;
-    padding: 0.5rem;
-    display: none;
-}
-
 .mute-section {
     width: inherit;
-    min-height: 50px;
+    margin-top: 1rem;
+    flex: 0 0 50px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .mute {
-    position: relative;
-    left: -12px;
     border: none;
     background-color: inherit;
 }
@@ -143,8 +129,64 @@ body{
     height: 27px;
 }
 
-footer {
+.reset {
+    margin: 2rem;
+    padding: 0.5rem;
+    display: none;
+}
+
+.choices {
     margin-top: auto;
+    display: flex;
+    gap: 1rem;
+}
+
+.choices button {
+    background-color: inherit;
+    padding: 0.5rem;
+    border: 3px solid white;
+    position: relative;
+    transition: transform 0.5s;
+}
+
+.choices button img {
+    width: 100px;
+}
+
+.choices button:hover {
+    transform: rotate(25deg);
+}
+
+@keyframes wave {
+    0% {
+        bottom: 0px;
+        transform: rotate(25deg);
+    }
+    25% {
+        bottom: 10px;
+        transform: rotate(25deg);
+    }
+    50% {
+        transform: rotate(-25deg);
+    }
+    75% {
+        bottom: 10px;
+        transform: rotate(0deg);
+    }
+    100% {
+        bottom: 10px;
+    }
+    
+}
+
+.choices button:disabled {
+    animation-name: none;
+    transform: none;
+    border: 3px solid white;
+}
+
+footer {
+    margin-top: 2rem;
     text-align: center;
     padding: 0.7rem;
     width: 100%;
