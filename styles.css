@@ -137,12 +137,7 @@ body {
 
 .user-hand {
     /* mirror the comp-hand */
-    /* transform: matrix(0, -1, -1, 0, 0, 0); */
     transform: rotateY(180deg) rotateZ(-90deg);
-    /* animation-name: user-hand-animation;
-    animation-duration: 0.7s;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: 4; */
 }
 
 @keyframes user-hand-animation {
@@ -161,10 +156,6 @@ body {
 
 .comp-hand {
     transform: rotate(-90deg);
-    /* animation-name: comp-hand-animation;
-    animation-duration: 0.7s;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: 4; */
 }
 
 @keyframes comp-hand-animation {
