@@ -147,7 +147,6 @@ function checkIfGameEnded() {
 }
 
 function hideGame(){
-    // scoreNode.setAttribute("style", "display: none;");
     choices.setAttribute("style", "display: none;");
 }
 
