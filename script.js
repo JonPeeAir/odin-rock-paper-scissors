@@ -28,7 +28,7 @@ muteButton.addEventListener("click", () => {
 });
 
 resetButton.addEventListener("click", resetGame);
-buttons.forEach(button => button.addEventListener("click", playRound));
+buttons.forEach(button => button.onclick = playRound);
 
 function playRound(event) {
     console.log(event);
@@ -38,12 +38,22 @@ function playRound(event) {
     let winner = getWinner(userChoice, compChoice);
 
     buttons.forEach(button => button.disabled = true);
+
+    let currentButton;
+    if (event.target.nodeName === "IMG") {
+        currentButton = event.path[1];
+    } else {
+        currentButton = event.target;
+    }
+    currentButton.setAttribute("style", "bottom: 10px; animation: wave 2s forwards;")
+
     setTimeout(() => {
+        currentButton.removeAttribute("style");
         buttons.forEach(button => button.disabled = false);
         updateWinnerScore(winner, scores);
         showRoundResults(winner, userChoice, compChoice);
         checkIfGameEnded();
-    }, 2000);
+    }, 4000);
 }
 
 function getCompChoice() {
