@@ -262,7 +262,6 @@ footer {
     }
 
     .player-hands {
-        /* background-color: red; */
         margin-top: 4.5rem;
         gap: 6rem;
     }
@@ -280,10 +279,8 @@ footer {
         width: 100px;
     }
     
-    
     .score-section .scores {
         font-size: 2.5rem;
     }
-
-    
 }
+
