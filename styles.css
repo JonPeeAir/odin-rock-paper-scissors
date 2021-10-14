@@ -30,14 +30,15 @@ html {
     animation-name: splashScreen;
     animation-duration: 10s;
     animation-fill-mode: forwards;
-    animation-timing-function: ease-in;
+    animation-timing-function: ease-in-out;
+    display: none;
 }
 
 @keyframes splashScreen {
     0% {background-color: white;}
     10% {background-color: #333;}
-    75% {top: 0px; background-color: #333;}
-    100% {top: -100%; background-color: #333;}
+    90% {top: 0px; background-color: #333;}
+    100% {top: -100vh; background-color: #333;}
 }
 
 .splash-title {
@@ -45,7 +46,7 @@ html {
     font-weight: bold;
     text-align: center;
     position: relative;
-    top: -100%;
+    top: -100vh;
 }
 
 .splash-rock {
@@ -74,11 +75,9 @@ html {
 }
 
 @keyframes splashText {
-    0% {top: -100%;}
-    100% {top: 0%;}
+    0% {top: -100vh;}
+    100% {top: 0vh;}
 }
-
-
 
 body {
     height: 100vh;
@@ -150,8 +149,12 @@ body {
     height: 27px;
 }
 
+.game-comments {
+    font-size: 2rem;
+}
+
 .player-hands{
-    margin-top: 2.7rem;
+    margin-top: 2rem;
     display: flex;
     gap: 12rem;
 }
@@ -236,4 +239,51 @@ footer {
     padding: 0.7rem;
     width: 100%;
     background-color: #c4c4c4;
+}
+
+@media screen and (max-width: 960px) {
+
+    .player-hands {
+        margin-top: 4rem;
+    }
+
+    .player-hands div img{
+        width: 250px;
+    }
+}
+
+@media screen and (max-width: 740px) {
+    .title {
+        font-size: 3rem;
+    }
+
+    .game-comments {
+        font-size: 1.7rem;
+    }
+
+    .player-hands {
+        /* background-color: red; */
+        margin-top: 4.5rem;
+        gap: 6rem;
+    }
+
+    .player-hands div img {
+        width: 220px;
+    }
+
+    .choices button img {
+        width: 80px;
+    }
+    
+    .score-section .player-label {
+        font-size: 2.2rem;
+        width: 100px;
+    }
+    
+    
+    .score-section .scores {
+        font-size: 2.5rem;
+    }
+
+    
 }
