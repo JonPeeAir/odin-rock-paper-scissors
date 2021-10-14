@@ -1,5 +1,3 @@
-const body = document.querySelector("body");
-const scoreNode = document.querySelector(".score-section");
 const userScoreNode = document.querySelector(".user-score");
 const compScoreNode = document.querySelector(".comp-score");
 const backgroundMusic = document.querySelector(".bg-music");
@@ -14,13 +12,13 @@ const choices = document.querySelector(".choices");
 const resetButton = document.querySelector(".reset");
 const buttons = Array.from(document.querySelectorAll(".choices > button"));
 
+document.addEventListener("click", () => backgroundMusic.play());
+muteButton.onclick = toggleMusicVolume;
+resetButton.onclick = resetGame;
+buttons.forEach(button => button.onclick = playRound);
 let scores = {"user": 0, "comp": 0};
 
-backgroundMusic.preload = true;
-
-document.addEventListener("click", () => backgroundMusic.play());
-
-muteButton.addEventListener("click", () => {
+function toggleMusicVolume() {
     if (backgroundMusic.muted === true) {
         muteImg.src = "images/volume-high-solid.svg";
         backgroundMusic.muted = false;
@@ -28,41 +26,60 @@ muteButton.addEventListener("click", () => {
         muteImg.src = "images/volume-xmark-solid.svg";
         backgroundMusic.muted = true;
     }
-    console.log(backgroundMusic.volume)
-});
+}
 
-resetButton.addEventListener("click", resetGame);
-buttons.forEach(button => button.onclick = playRound);
+function resetGame() {
+    resetScore();
+    hideResetButton();
+    gameComments.textContent = "pick an option";
+    showGame();
+}
+
+function resetScore(){
+    scores = {"user": 0, "comp": 0};
+    userScoreNode.textContent = "0";
+    compScoreNode.textContent = "0";
+}
+
+function showResetButton() {
+    resetButton.setAttribute('style', 'display: block;');
+}
+
+function hideResetButton() {
+    resetButton.setAttribute('style', 'display: none');
+}
+
+function showGame() {
+    choices.setAttribute("style", "display: flex;");
+}
+
+function hideGame(){
+    choices.setAttribute("style", "display: none;");
+}
 
 function playRound(event) {
-    console.log(event);
-    userHandImg.setAttribute("src", "images/test/rock-left.svg");
-    compHandImg.setAttribute("src", "images/test/rock.svg");
+    // Ensure player hands start with rock
+    userHandImg.setAttribute("src", "images/player-hands/rock-left.svg");
+    compHandImg.setAttribute("src", "images/player-hands/rock-right.svg");
+
+    disableChoices();
+
     let userChoice = event.target.id;
     let compChoice = getCompChoice();
 
     let winner = getWinner(userChoice, compChoice);
 
-    buttons.forEach(button => button.disabled = true);
-
-    let currentButton;
-    if (event.target.nodeName === "IMG") {
-        currentButton = event.path[1];
-    } else {
-        currentButton = event.target;
-    }
+    let currentButton = getButtonNode(event);
     currentButton.setAttribute("style", "bottom: 10px; animation: wave 3.5s forwards;")
 
+    // Animate current round
     userHand.setAttribute("style", "animation: user-hand-animation 0.7s ease-in-out 4");
     compHand.setAttribute("style", "animation: comp-hand-animation 0.7s ease-in-out 4");
 
     setTimeout(() => {
-        currentButton.removeAttribute("style");
-        userHand.removeAttribute("style");
-        userHandImg.setAttribute("src", `images/test/${userChoice}-left.svg`);
-        compHand.removeAttribute("style")
-        compHandImg.setAttribute("src", `images/test/${compChoice}.svg`);
-        buttons.forEach(button => button.disabled = false);
+        removeAnimations(currentButton);
+        displayPlayerChoices(userChoice, compChoice)
+        enableChoices();
         updateWinnerScore(winner, scores);
         showRoundResults(winner, userChoice, compChoice);
         checkIfGameEnded();
@@ -108,6 +125,40 @@ function getWinner(player1, player2) {
     }
 }
 
+function getButtonNode(event) {
+    /*  
+        Made this function because sometimes clicking on
+        a button node targets the image in the node instead
+        of the button itself
+        
+        we usually want the button node
+    */
+    if (event.target.nodeName === "IMG") {
+        return event.path[1];
+    } else {
+        return event.target;
+    }
+}
+
+function removeAnimations(currentButton) {
+    currentButton.removeAttribute("style");
+    userHand.removeAttribute("style");
+    compHand.removeAttribute("style")
+}
+
+function displayPlayerChoices(userChoice, compChoice) {
+    userHandImg.setAttribute("src", `images/player-hands/${userChoice}-left.svg`);
+    compHandImg.setAttribute("src", `images/player-hands/${compChoice}-right.svg`);
+}
+
+function enableChoices() {
+    buttons.forEach(button => button.disabled = false);
+}
+
+function disableChoices() {
+    buttons.forEach(button => button.disabled = true);
+}
+
 function updateWinnerScore(winner, scores) {
 
     switch(winner) {
@@ -146,15 +197,6 @@ function checkIfGameEnded() {
     }
 }
 
-function hideGame(){
-    choices.setAttribute("style", "display: none;");
-}
-
-function showGame() {
-    scoreNode.setAttribute("style", "display: flex;");
-    choices.setAttribute("style", "display: flex;");
-}
-
 function showGameResult() {
     if (scores["user"] > scores["comp"]) {
         gameComments.textContent = "You Win The Game!";
@@ -163,24 +205,6 @@ function showGameResult() {
     }
 }
 
-function showResetButton() {
-    resetButton.setAttribute('style', 'display: block; margin-top: auto;');
-}
 
-function hideResetButton() {
-    resetButton.setAttribute('style', 'display: none');
-}
 
-function resetGame() {
-    resetScore();
-    hideResetButton();
-    gameComments.textContent = "pick an option";
-    showGame();
-}
-
-function resetScore(){
-    scores = {"user": 0, "comp": 0};
-    userScoreNode.textContent = "0";
-    compScoreNode.textContent = "0";
-}
 
