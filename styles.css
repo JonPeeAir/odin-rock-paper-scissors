@@ -17,24 +17,20 @@ html {
 .splash {
     background-color: #fff;
     color: white;
-    font-size: 2rem;
     position: absolute;
     top: 0px;
     left: 0px;
     z-index: 1;
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 2rem;
     animation-name: splashScreen;
     animation-duration: 10s;
     animation-fill-mode: forwards;
     animation-timing-function: ease-in;
-}
-
-.splash h1 {
-    text-align: center;
 }
 
 @keyframes splashScreen {
@@ -43,6 +39,45 @@ html {
     75% {top: 0px; background-color: #333;}
     100% {top: -100%; background-color: #333;}
 }
+
+.splash-title {
+    font-size: 4rem;
+    font-weight: bold;
+    text-align: center;
+    position: relative;
+    top: -100%;
+}
+
+.splash-rock {
+    animation-name: splashText;
+    animation-duration: 1.5s;
+    animation-delay: 2s;
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(1,.02,.43,1.38);
+
+}
+
+.splash-paper {
+    animation-name: splashText;
+    animation-duration: 1.5s;
+    animation-delay: 2.5s;
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(1,.02,.43,1.38);
+}
+
+.splash-scissors {
+    animation-name: splashText;
+    animation-duration: 1.5s;
+    animation-delay: 3s;
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(1,.02,.43,1.38);
+}
+
+@keyframes splashText {
+    0% {top: -100%;}
+    100% {top: 0%;}
+}
+
 
 
 body {
