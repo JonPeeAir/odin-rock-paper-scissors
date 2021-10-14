@@ -155,7 +155,7 @@ body {
 
 .player-hands{
     margin-top: 2rem;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
     display: flex;
     gap: 12rem;
 }
@@ -359,15 +359,21 @@ footer {
 
     .game-comments {
         font-size: 1.2rem;
+        margin-bottom: 2rem;
     }
 
     .player-hands {
-        margin-top: 5rem;
-        gap: 1.7rem;
+        margin-top: auto;
+        margin-bottom: 1rem;
+        gap: 1rem;
     }
 
     .player-hands div img {
         width: 120px;
+    }
+
+    .choices {
+        gap: 0.5rem;
     }
 
     .choices button img {
@@ -384,16 +390,20 @@ footer {
         padding: 0rem 1rem;
         border: 3px dashed black;
     }
+
+    footer {
+        margin-top: 1rem;
+    }
     
     @keyframes comp-hand-animation {
         0% {transform: rotate(-90deg) translate(0px, 0px);}
-        50% {transform: rotate(-30deg) translate(60px, -60px);}
+        50% {transform: rotate(-30deg) translate(40px, -40px);}
         100% {transform: rotate(-90deg) translate(0px, 0px);}
     }
 
     @keyframes user-hand-animation {
         0% {transform: rotate(90deg) translate(0px, 0px);}
-        50% {transform: rotate(30deg) translate(-60px, -60px);}
+        50% {transform: rotate(30deg) translate(-40px, -40px);}
         100% {transform: rotate(90deg) translate(0px, 0px);}
     }
 }
