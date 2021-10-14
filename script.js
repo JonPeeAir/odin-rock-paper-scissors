@@ -32,6 +32,8 @@ function resetGame() {
     resetScore();
     hideResetButton();
     gameComments.textContent = "pick an option";
+    userHandImg.setAttribute("src", "images/player-hands/rock-left.svg");
+    compHandImg.setAttribute("src", "images/player-hands/rock-right.svg");
     showGame();
 }
 
