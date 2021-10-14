@@ -202,8 +202,8 @@ body {
 
 .choices button {
     background-color: inherit;
+    border: none;
     padding: 0.5rem;
-    border: 3px solid white;
     position: relative;
     transition: transform 0.5s;
 }
@@ -361,7 +361,7 @@ footer {
     }
 
     .player-hands {
-        margin-top: 6rem;
+        margin-top: 5rem;
         gap: 1.7rem;
     }
 
