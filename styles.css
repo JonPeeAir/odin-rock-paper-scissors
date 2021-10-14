@@ -39,7 +39,7 @@ html {
 
 @keyframes splashScreen {
     0% {background-color: white;}
-    25% {background-color: #333;}
+    10% {background-color: #333;}
     75% {top: 0px; background-color: #333;}
     100% {top: -100%; background-color: #333;}
 }
@@ -143,9 +143,17 @@ body {
 }
 
 .reset {
+    border: none;
+    background-color: inherit;
     margin: auto;
     padding: 0.5rem;
+    font-size: 2.5rem;
     display: none;
+}
+
+.reset:hover {
+    color: rgb(102, 102, 102);
+    font-size: 2.7rem;
 }
 
 .choices {
